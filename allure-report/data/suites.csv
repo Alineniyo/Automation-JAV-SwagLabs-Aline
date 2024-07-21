@@ -1,0 +1,8 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Jun 05 14:51:41 CAT 2024","Wed Jun 05 14:51:45 CAT 2024","3485","","TS_SwagLabs_JUnit","","TS_SwagLabs_JUnit","tc_swaglabs_missing_username_and_password","TC - SwagLabs - Missing Username and Password",""
+"broken","Wed Jun 05 14:51:41 CAT 2024","Wed Jun 05 14:51:57 CAT 2024","15936","","TS_SwagLabs_JUnit","","TS_SwagLabs_JUnit","tc_swaglabs_basics","TC - SwagLabs - Basic Functionality",""
+"passed","Wed Jun 05 14:51:42 CAT 2024","Wed Jun 05 14:51:45 CAT 2024","3463","","TS_SwagLabs_JUnit","","TS_SwagLabs_JUnit","tc_swaglabs_missing_password","TC - SwagLabs - Missing Password TC - SwagLabs - Missing Password - Repetition 3 of 3",""
+"passed","Wed Jun 05 14:51:41 CAT 2024","Wed Jun 05 14:51:45 CAT 2024","3606","","TS_SwagLabs_JUnit","","TS_SwagLabs_JUnit","tc_swaglabs_missing_password","TC - SwagLabs - Missing Password TC - SwagLabs - Missing Password - Repetition 1 of 3",""
+"passed","Wed Jun 05 14:51:42 CAT 2024","Wed Jun 05 14:51:45 CAT 2024","3566","","TS_SwagLabs_JUnit","","TS_SwagLabs_JUnit","tc_swaglabs_missing_password","TC - SwagLabs - Missing Password",""
+"passed","Wed Jun 05 14:51:42 CAT 2024","Wed Jun 05 14:51:45 CAT 2024","3392","","TS_SwagLabs_JUnit","","TS_SwagLabs_JUnit","tc_swaglabs_missing_password","TC - SwagLabs - Missing Password TC - SwagLabs - Missing Password - Repetition 2 of 3",""
+"skipped","Wed Jun 05 14:51:41 CAT 2024","Wed Jun 05 14:51:41 CAT 2024","1","","TS_SwagLabs_JUnit","","TS_SwagLabs_JUnit","tc_swaglabs_locked_out_user","TC - SwagLabs - Locked out user",""

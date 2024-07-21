@@ -1,0 +1,491 @@
+<!-- ============================================================================================== -->
+<!-- POM Configuration for Test Automation															-->
+<!--																								-->
+<!-- Written by: Greg Paskal																		-->
+<!-- Created on: 2023-12-20																			-->
+<!--																								-->
+<!-- Description: This is a POM file for a Maven project that uses Selenium, JUnit 5, and Allure.	-->
+<!--																								-->
+<!-- Changelog:																						-->
+<!-- 2024-04-15: v1.14 - Reverted POM usage of LATEST whioch is being depricated					-->
+<!-- 2024-04-01: v1.13 - Upgraded support for many dependencies to LATEST							-->
+<!-- 2024-04-01: v1.12 - Added additional Mockito support											-->
+<!-- 2024-03-26: v1.11 - Added support for parameterized test										-->
+<!-- 2024-02-07: v1.10 - Added support for Test Step reporting										-->
+<!-- 2024-02-07: v1.09 - Added Mockito enabling mocking capabilities								-->
+<!-- 2024-01-28: v1.08 - Added pom.version to be used in reporting									-->
+<!-- 2024-01-28: v1.07 - Added parallel test execution capabilities									-->
+<!-- 2024-01-24: v1.06 - Added option to contunie build even on test failure 						-->
+<!-- 2023-12-24: v1.05 - Added creation of javadocs													-->
+<!-- 2023-12-24: v1.04 - Added reporting plugins													-->
+<!-- 2023-12-23: v1.03 - Maven generates both current and historical allure results.				-->
+<!-- 2023-12-22: v1.02 - Enhanced so maven with improved steps to match reporting needs.			-->
+<!-- 2023-12-22: v1.01 - Enhanced so maven clean will clear our Allure assets.						-->
+<!-- 2023-12-20: v1.00 - Initial version Created basic Selenium and JUnit 5 setup.					-->
+<!--																								-->
+<!-- ============================================================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<!-- Project Details -->
+  	<url>http://www.muraho.tech</url>					<!-- URL to the project homepage -->
+	<groupId>tech.muraho.automation</groupId>			<!-- Project identification (This is the "Template" project) -->
+	<artifactId>Template</artifactId>					<!-- Project name (This is the "Template" project) -->
+	
+	<version>0.0.1-SNAPSHOT</version>					<!-- Leave as "0.0.1-SNAPSHOT" which will continually check for component updates -->	
+	<modelVersion>4.0.0</modelVersion>					<!-- Project Object Model version being used -->
+
+	<properties>
+		<pom.version>1.14</pom.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>	<!-- Character encoding (Leave as UTF-8) -->
+		<java.version>21</java.version> 									<!-- Using Java version 21 -->
+		<maven.compiler.source>21</maven.compiler.source>					<!-- Using Java version 21 -->
+    	<maven.compiler.target>21</maven.compiler.target>					<!-- Using Java version 21 -->
+	</properties>
+
+	<!-- ================================================================================ -->
+	<!-- Dependencies Section - Begin -->
+	<dependencies>
+
+		<!-- Selenium for Java -->
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<!-- Selenium is a suite of tools to automate web browsers across many platforms. -->
+		<dependency> 
+			<groupId>org.seleniumhq.selenium</groupId> 
+			<artifactId>selenium-java</artifactId> 
+			<version>4.19.1</version>
+		</dependency>
+
+		<!-- JUnit 5 Jupiter Engine -->
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+		<!-- Core package for the JUnit 5 Jupiter test engine. -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.10.2</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- JUnit 5 Jupiter API -->
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<!-- JUnit Jupiter is the API for writing tests using JUnit 5. -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.10.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- JUnit 5 Jupiter Params -->
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
+		<!-- JUnit Jupiter Params is an extension for parameterized tests in JUnit 5. -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<version>5.10.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Maven Model -->
+		<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-model -->
+		<!-- Model for Maven POM that allows reading POM values from Java -->
+		<dependency>
+        	<groupId>org.apache.maven</groupId>
+        	<artifactId>maven-model</artifactId>
+        	<version>3.9.6</version> <!-- replace with the version you want to use -->
+    	</dependency>
+
+		<!-- Allure for JUnit 5 -->
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+		<!-- Automated test results reporting usilizing Allure with JUnit 5 -->
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-junit5</artifactId>
+			<version>2.27.0</version>
+			<scope>test</scope>
+    	</dependency>
+
+		<!-- Logback Classic Module -->
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+		<!-- A reliable, generic, fast and flexible logging framework. -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.5.5</version>
+		</dependency>
+
+		<!-- WebDriverManager -->
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<!-- Automate the management of drivers like chromedriver, required by Selenium WebDriver to keep in sync with browser. -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.8.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Mockito -->
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+		<!-- Mockito is a mocking framework. -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>5.11.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Mockito JUnit Jupiter -->
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
+		<!-- Mockito is a mocking framework. -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>5.11.0</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<!-- Dependencies Section - End -->
+	<!-- ================================================================================ -->
+
+	<!-- ================================================================================ -->
+	<!-- Build Section - Begin -->
+	<build>
+
+		<!-- Build Section Plugins - Begin -->
+		<plugins>
+
+			<!-- Maven Clean Plugin - Begin -->
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
+			<!-- Clear directories related to automation reporting -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.3.2</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${project.basedir}</directory>
+							<includes>
+								<include>.allure*/**</include>
+							</includes>
+						</fileset>
+						<fileset>
+							<directory>${project.basedir}</directory>
+							<includes>
+								<include>allure-*/**</include>
+							</includes>
+						</fileset>
+						<fileset>
+							<directory>${project.basedir}</directory>
+							<includes>
+								<include>target*/**</include>
+							</includes>
+						</fileset>
+						<fileset>
+							<directory>${project.basedir}</directory>
+							<includes>
+								<include>"*/**</include>
+							</includes>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+			<!-- Maven Clean Plugin - End -->
+
+			<!-- Maven Antrun Plugin - Begin -->
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-antrun-plugin -->
+			<!-- Automate tasks in preperation for test automation execution. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>3.1.0</version>
+
+				<!-- Ant task executions - Begin -->
+				<executions>
+
+					<!-- Ant Task - Delete the allure-results directory before running the unit tests -->
+					<execution>
+						<phase>verify</phase>
+						<id>clean-directory-before-unit-tests</id>
+						<configuration>
+							<target>
+								<delete dir="${project.basedir}/allure-results" includes="**/*" failonerror="false"/>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+
+					<!-- Ant Task - Copy previous allure history results to aggregate new run results into overall history metrics. -->
+					<execution>
+						<phase>prepare-package</phase>
+						<id>copy-history</id>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<copy todir="${project.basedir}/allure-results/history" failonerror="false">
+									<fileset dir="${project.basedir}/allure-report/history"/>
+								</copy>
+							</target>
+						</configuration>
+					</execution>
+
+				</executions>
+				<!-- Ant task executions - End -->
+
+			</plugin>
+			<!-- Maven Antrun Plugin - End -->
+
+			<!-- Maven Compiler Plugin -->
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+			<!-- Compile the Java sources of your project -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+			</plugin>
+
+			<!-- Maven Jar Plugin -->
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
+			<!-- Because this is a Test Automation repository, skip creating a JAR file -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.3.0</version>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+        	</plugin>
+
+			<!-- Maven Properties Plugin -->
+			<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/properties-maven-plugin -->
+			<!-- Read properties from a file and set them as Maven properties -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+
+					<!-- Read properties from the file named testConfig.properties -->
+					<execution>
+						<id>execution</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+						<configuration>
+							<files>
+								<file>src/test/resources/testConfig.properties</file>
+							</files>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+			<!-- Maven Surefire Plugin - Begin -->
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+			<!-- https://maven.apache.org/surefire/maven-surefire-plugin/ -->
+			<!-- Run all JUnit tests, currently identified as a file ending in 'JUnit.java' -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.2.3</version>
+
+				<configuration>
+					<includes>
+						<include>**/*JUnit.java</include> <!-- Run all JUnit tests -->
+					</includes>
+					<trimStackTrace>true</trimStackTrace> <!-- Trim the stack trace details -->
+					<testFailureIgnore>true</testFailureIgnore> <!-- Ignore test failures and continue build -->
+
+					<!-- Specify the Java Agent for AspectJ Weaver -->
+					<argLine>
+						-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.9.21/aspectjweaver-1.9.21.jar
+					</argLine>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>io.qameta.allure.junit5.AllureJunit5</value> <!-- Allure JUnit 5 Listener -->
+						</property>
+					</properties>
+
+					<!-- Serial or Parallel Test Execution - Begin -->
+					<properties>
+						<configurationParameters>
+							<!-- Parallel Execution - true or false (Pulled from the testConfig.properties file) -->
+							junit.jupiter.execution.parallel.enabled=${parallelExecution}
+
+							<!-- Parallel Execution Mode - Test Suites - concurrent or same_thread -->
+							junit.jupiter.execution.parallel.mode.classes.default=concurrent
+
+							<!-- Parallel Execution Mode - Test Case - concurrent or same_thread -->
+							junit.jupiter.execution.parallel.mode.default=concurrent
+
+							<!-- Parallel Execution Strategy - fixed or dynamic -->
+							junit.jupiter.execution.parallel.config.strategy=fixed
+
+							<!-- Parallel Execution Threads - fixed number of threads (Pulled from the testConfig.properties file) -->
+							junit.jupiter.execution.parallel.config.fixed.parallelism=${parallelExecutionThreads}
+						</configurationParameters>
+					</properties>
+					<!-- Serial or Parallel Test Execution - End -->
+
+				</configuration>
+
+				<!-- Maven Surefire Dependencies - Begin -->
+				<dependencies>
+
+					<!-- Allure Junit5 Dependency -->
+					<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+					<!-- Integrates Allure with JUnit 5 -->
+					<dependency>
+						<groupId>io.qameta.allure</groupId>
+						<artifactId>allure-junit5</artifactId>
+						<version>2.25.0</version>
+					</dependency>
+
+					<!-- AspectJ Weaver Dependency -->
+					<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+					<!-- AspectJ is a seamless aspect-oriented extension for Java -->
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>1.9.21</version>
+					</dependency>
+
+				</dependencies>
+				<!-- Maven Surefire Dependencies - End -->
+
+			</plugin>
+			<!-- Maven Surefire Plugin - End -->
+			
+			<!-- Maven Allure Plugin - Begin -->
+			<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+			<!-- Generate Allure Report -->
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>2.12.0</version>
+				<configuration>
+					<resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
+					<reportDirectory>${project.basedir}/allure-report</reportDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>post-integration-test</phase>
+						<id>allure-report</id>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Maven Allure Plugin - End -->
+
+			<!-- Maven Exec Plugin - Begin -->
+			<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/exec-maven-plugin -->
+			<!-- Execute system and Java programs in your project -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.1.1</version>
+
+				<!-- Maven Exec Plugin Executions - Begin -->
+				<executions>
+
+					<!-- Generate Allure Report - Begin -->
+					<execution>
+						<phase>post-integration-test</phase>
+						<id>allure-generate</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>allure</executable>
+							<arguments>
+								<argument>generate</argument>
+								<argument>${project.basedir}/allure-results</argument>
+								<argument>--clean</argument>
+								<argument>-o</argument>
+            					<argument>${project.basedir}/allure-report</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<!-- Generate Allure Report - End -->
+
+				</executions>
+				<!-- Maven Exec Plugin Executions - End -->
+
+			</plugin>
+			<!-- Maven Exec Plugin - End -->
+
+		</plugins>
+		<!-- Build Section Plugins - End -->
+
+	</build>
+	<!-- Build Section - End -->
+	<!-- ================================================================================ -->
+
+	<!-- ================================================================================ -->
+	<!-- Reporting Section - Begin -->
+	<reporting>
+
+		<!-- Reporting Section Plugins - Begin -->
+		<plugins>
+
+			<!-- Maven Project Info Reports Plugin - Begin -->
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-project-info-reports-plugin -->
+			<!-- Generate Project Information Reports -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.5.0</version>
+			</plugin>
+			<!-- Maven Project Info Reports Plugin - End -->
+
+			<!-- Maven Javadoc Plugin - Begin -->
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
+			<!-- Generates JavaDoc for the project -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.6.3</version>
+				<configuration>
+					<failOnError>false</failOnError>
+				</configuration>
+			</plugin>
+			<!-- Maven Javadoc Plugin - End -->
+
+			<!-- Maven SpotBugs Plugin - Begin -->
+			<!-- https://mvnrepository.com/artifact/com.github.spotbugs/spotbugs-maven-plugin -->
+			<!-- Generates report of potential bugs in the code - Evaluating -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>4.8.3.0</version>
+			</plugin>
+			<!-- Maven SpotBugs Plugin - End -->
+
+			<!-- Maven JXR Plugin - Begin -->
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jxr-plugin -->
+			<!-- Generates source cross-reference in HTML Evaluating -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>3.3.1</version>
+			</plugin>
+			<!-- Maven JXR Plugin - End -->
+
+		</plugins>
+		<!-- Reporting Section Plugins - End -->
+
+	</reporting>
+	<!-- Reporting Section - End -->
+	<!-- ================================================================================ -->
+
+</project>
